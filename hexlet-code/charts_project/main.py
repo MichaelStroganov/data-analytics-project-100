@@ -38,6 +38,7 @@ def run_all():
     mrg.rename(columns={'datetime':'date_group', 'visit_id':'visits', 'user_id':'registrations'}, inplace=True)
     mrg['conversion'] = mrg['registrations']/mrg['visits']
     mrg.sort_values(by='date_group', inplace=True)
+    mrg.to_json('conversion.json')
 
     ads = pd.read_csv(r'charts_project/data/ads.csv')
     ads['date'] = pd.to_datetime(ads['date']).dt.date
